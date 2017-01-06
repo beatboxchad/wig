@@ -97,7 +97,8 @@ class OutputJSON(Output):
 
 	def write_file(self):
 		file_name = self.options['write_file']
-		with open(file_name+ '.json', 'w') as fh:
+		file_name = file_name if re.search(r'\.json\s*$', file_name) else file_name + '.json'
+		with open(file_name, 'w') as fh:
 			fh.write(json.dumps(self.json_data, sort_keys=True, indent=4, separators=(',', ': ')))
 
 
